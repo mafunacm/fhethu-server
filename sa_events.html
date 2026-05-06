@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SA Events Results</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 1.5rem;
+      background: #f4f6f8;
+      color: #111;
+    }
+    h1 {
+      margin-bottom: 0.5rem;
+    }
+    .note {
+      margin-bottom: 1.5rem;
+      color: #444;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(0,0,0,.1);
+    }
+    th, td {
+      text-align: left;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #e1e5eb;
+    }
+    th {
+      background: #f7fafc;
+      font-weight: 700;
+    }
+    tr:hover {
+      background: #f2f6fb;
+    }
+    .error {
+      margin-top: 1rem;
+      color: #b21f2d;
+    }
+  </style>
+</head>
+<body>
+  <h1>SA Events Results</h1>
+  <p class="note">This page reads <code>sa_events.json</code> and displays upcoming event data from Quicket, Webtickets, and Howler.</p>
+  <div id="status">Loading events…</div>
+  <table id="events-table" hidden>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Location</th>
+        <th>Source</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    async function loadEvents() {
+      const status = document.getElementById('status');
+      const table = document.getElementById('events-table');
+      const tbody = table.querySelector('tbody');
+
+      try {
+        const res = await fetch('sa_events.json');
+        if (!res.ok) {
+          throw new Error(`Unable to load sa_events.json: ${res.status} ${res.statusText}`);
+        }
+
+        const events = await res.json();
+        if (!Array.isArray(events) || events.length === 0) {
+          status.textContent = 'No events found in sa_events.json.';
+          return;
+        }
+
+        for (const event of events) {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td><a href="${event.url}" target="_blank" rel="noopener noreferrer">${event.title || ''}</a></td>
+            <td>${event.date || ''}</td>
+            <td>${event.location || ''}</td>
+            <td>${event.source || ''}</td>
+            <td>${event.price || ''}</td>
+          `;
+          tbody.appendChild(row);
+        }
+
+        status.hidden = true;
+        table.hidden = false;
+      } catch (error) {
+        status.innerHTML = `<span class="error">Error loading events: ${error.message}</span>`;
+      }
+    }
+
+    loadEvents();
+  </script>
+</body>
+</html>

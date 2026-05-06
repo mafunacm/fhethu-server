@@ -1,0 +1,52 @@
+[
+  {
+    "title": "Soweto Sound Festival",
+    "category": "Music",
+    "date": "2026-05-10",
+    "time": "18:00",
+    "location": "Soweto",
+    "address": "Zone 6 – Eyethu Lifestyle Centre",
+    "price": "R120",
+    "source": "Quicket"
+  },
+  {
+    "title": "City Roof Party",
+    "category": "Party",
+    "date": "2026-05-12",
+    "time": "22:00",
+    "location": "Cape Town",
+    "address": "Pier 10 Rooftop",
+    "price": "Free entry",
+    "source": "Plankton"
+  },
+  {
+    "title": "Comedy Open Mic",
+    "category": "Comedy",
+    "date": "2026-05-08",
+    "time": "20:30",
+    "location": "Johannesburg",
+    "address": "Braamfontein – The Laugh Lounge",
+    "price": "R80",
+    "source": "Ticketpro"
+  },
+  {
+    "title": "Springboks vs Lions",
+    "category": "Sports",
+    "date": "2026-05-15",
+    "time": "16:00",
+    "location": "Pretoria",
+    "address": "Loftus Versfeld Stadium",
+    "price": "R320",
+    "source": "SuperSport Tickets"
+  },
+  {
+    "title": "Innovation Expo 2026",
+    "category": "Expo",
+    "date": "2026-06-02",
+    "time": "10:00",
+    "location": "Cape Town",
+    "address": "CTICC – Hall 2",
+    "price": "R250",
+    "source": "Webtickets"
+  }
+]
